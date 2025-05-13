@@ -1,1 +1,22 @@
-<p>listado works!</p>
+<form [formGroup]="form" class="filters">
+    <input type="text" formControlName="search" placeholder="Buscar país" aria-label="Buscar país">
+
+    <select formControlName="region" aria-label="Filtrar por región">
+        <option value="">Todas las regiones</option>
+        <option *ngFor="let region of ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']" [value]="region">{{ region }}</option>
+    </select>
+</form>
+
+<cdk-virtual-scroll-viewport *ngIf="filteredCountries$ | async as countries" itemSize="70" class="viewport">
+    <div *cdkVirtualFor="let country of countries" class="country">
+        <img [src]="country.flags.svg" [alt]="'Bandera de ' + country.name.common" width="50">
+        <div>
+            <h3>{{ country.name.common }}</h3>
+            <p>{{ country.region }}</p>
+            <button (click)="favService.toggleFavorito(country)" [ariaLabel]="(favService.isFavorito(country.cca3)() ? 'Quitar' : 'Agregar') + ' a favoritos'">
+                {{ favService.isFavorito(country.cca3)() ? '★' : '☆'}}
+            </button>
+        </div>
+        <a [routerLink]="['/listado/country', country.cca3]" [ariaLabel]="'Detalle de ' + country.name.common">Ver más</a>
+    </div>
+</cdk-virtual-scroll-viewport>

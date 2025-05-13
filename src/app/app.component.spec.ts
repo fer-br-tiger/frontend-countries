@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -11,6 +13,9 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [
+        provideHttpClient(withInterceptors([errorInterceptor]))
+      ]
     }).compileComponents();
   });
 

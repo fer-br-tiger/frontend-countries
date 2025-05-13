@@ -1,0 +1,16 @@
+<ng-container *ngIf="country$ | async as country; else errorTpl">
+  <section class="detail" *ngIf="country; else errorTpl">
+    <img [src]="country[0].flags.svg" [alt]="'Bandera de ' + country[0].name.common" />
+    <h2>{{ country[0].name.common }}</h2>
+    <p><strong>Código:</strong> {{ country[0].cca3 }}</p>
+    <p><strong>Región:</strong> {{ country[0].region }}</p>
+    <p><strong>Subregión:</strong> {{ country[0].subregion || '—' }}</p>
+    <p><strong>Población:</strong> {{ country[0].population | number }}</p>
+    <a routerLink="/">Volver al listado</a>
+  </section>
+</ng-container>
+
+<ng-template #errorTpl>
+  <p>País no encontrado o error al cargar los datos.</p>
+  <a routerLink="/">Volver al listado</a>
+</ng-template>

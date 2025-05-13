@@ -22,7 +22,7 @@ export class CountryService {
     return this.http.get<Country[]>(`${this.URL}/name/${name}`);
   }
 
-  getByCode(code: string): Observable<Country> {
-    return this.http.get<Country>(`${this.URL}/alpha/${code}`);
+  getByCode(code: string): Observable<Country[]> {
+    return this.http.get<Country[]>(`${this.URL}/alpha/${code}`);
   }
 }

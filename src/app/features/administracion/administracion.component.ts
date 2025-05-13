@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FavoritosService } from '../../core/services/favoritos.service';
 
 @Component({
   selector: 'app-administracion',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AdministracionComponent {
 
+  constructor(public favService: FavoritosService) {}
 }
