@@ -1,6 +1,6 @@
 # Frontend Countries App
 
-App hecha con Angular 17 para mostrar países desde la API pública REST Countries.
+App hecha con Angular 18 para mostrar países desde la API pública REST Countries.
 
 ## Comandos
 
